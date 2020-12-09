@@ -35,7 +35,79 @@
 2. gradient descent algorithm의 동작 원리
 - initial guesses에서 parameter(W,B)를 조금씩 바꿔서 local minimum을 찾는 것
 3. 사용되는 공식
-- ![eq1](./img/eq2.png)
+- ![eq2](./img/eq2.png)
   - 여기서 α는 learning rate 
 4. cost function을 설계할 때 주의할점 
 - cost function의 모양이 convex function이 되는지 확인필요
+
+## Lec 4
+1. wx1*wx2*wx3*...*wxn를 matrix로 표현?
+2. WX vs XW
+- Matrix에서는 XW로 표현
+3. [N,1]의 표현
+- [None, 1]
+4. Queue_runner란?
+- 큰 파일을 나누어 queue에 적재하여 numpy 또는 다른 자료구조의 max값을 넘지 않게 해주는듯
+
+## Lec 5
+1. Logistic Classification의 가설 함수 (softmax regression)
+- ![eq12](./img/eq12.png)
+- sigmoid(logistic)
+2. 사용 이유
+- Hypothesis의 값을 0과 1사이의 값으로 유지시키기 위해 
+- binary classification을 위함
+
+## Lec 5-2
+1. 기존 cost function을 사용할 시 문제점
+- local minimum이 생겨서 시작 위치에 따라 결과값이 다르게 도출됨
+2. cost function을 변환하여 문제해결
+- ![eq3](./img/eq3.png)
+- ![eq10](./img/eq10.png)
+
+## Lec 6
+1. Multinomial classification의 경우
+- A or not, B or not, C or not으로 분류 할 수 있다.
+- ![eq4](./img/eq4.png)
+2. one-hot encoding이란?
+- 가장 큰 확률의 값을 1로하고 나머지를 0으로 하는 것
+3. cross-entropy cost function
+- ![eq6](./img/eq6.png)
+4. cross-entropy vs. logistic regression
+- ![참고](https://mazdah.tistory.com/791)
+
+## Lec 7
+1. learning rate overshooting
+- learning rate의 값이 너무 커서 결과값이 수렴하지 않고 튀는 것
+ex) 결과값이 nan
+2. small learning rate
+- learning rate의 값이 너무 작아서 결과값을 수렴하는데 너무 오랜시간이 걸리는 것
+- local minimum에 갖힐 수 있음
+3. data preprocessing이란
+- data값의 차이가 클 경우, normalization을 통해 차이를 줄일 필요가 있음. (데이터 전처리)
+- standardization
+- MinMaxScaler()
+4. Overfitting이란?
+- 모델이 너무 잘 맞아서 문제가 생기는 것
+- ![eq8](./img/eq8.png)
+- 해결방법
+  - training data가 많거나
+  - feature의 갯수를 줄이는 것
+  - Regularization
+5. Regularization이란
+- Let’s not have too big numbers in the weight
+- ![eq9](./img/eq9.png)
+
+## Lec 7-2
+1. Training set vs. Test set vs. Validation set
+- 기존의 갖고 있는 데이터 셋을 7:3으로 나누어 model을 training set으로 모델을 훈련시키고, 나머지 test set으로 검증한다. validation set은 learning rate를 tuning 하는데 사용한다.
+- Training set: 연습문제
+- Validation set: 실전 모의고사
+- Test set: 실제 시험
+- ![eq11](./img/eq11.png)
+2. online learning이란?
+- 큰 데이터를 나눠서 학습시키는 것. 추가되는 데이터 또한 기존 모델에 학습된다.
+3. epoch
+-  전체 데이터셋을 한번 train한 것
+4. batch size
+- epoch을 일정사이즈로 자른 것
+- 한번에 몇개씩 학습시킬것인가
