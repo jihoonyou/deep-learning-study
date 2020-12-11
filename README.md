@@ -131,3 +131,48 @@ Axis,의 수는 rank의 개수와 같음
 - matrix1*matrix2는 결과가 다르게 나옴
 Broadcasting에 주의해야함
 - matrix가 맞지 않더라도 맞춰서 연산해주는 것
+
+## Lec 9
+1. Back propagation이란?
+- 예측값과 출력값을 비교하여 오류(cost)를 갖고 뒤에서 앞으로 미분값과 어떤 것을 수정해야할지 계산하는 것
+2. bias의 크기는?
+- weight의 두번째 값과 같게 설정한다.
+
+## Lec 10
+1. NN은 deep하게 할 경우 sigmod의 문제점은?
+- 최종값에서 앞으로 갈수록 Y의 sigmoid 값이 0~1사이 값으로 나타나 NN의 앞단에서 경사도가 사라지는 vanish gradient문제가 발생
+2. sigmoid vs ReLU
+- NN에서는 ReLU를 사용하자
+3. RBM이란
+- Restricted Boatman Machine
+  - weight을 통한 input X의 값과 결과값 Y를 통한 X의 값이 같게 weight의 값을 조정 하는 것
+4. Xavier initialization이란?
+- weight의 값을 노드의 인풋 갯수와 아웃풋 갯수의 값의 랜덤 값으로 정하고 인풋 값의 제곱으로 나누는 것
+5. He initilization이란?
+- weight의 값을 노드의 인풋 갯수와 아웃풋 갯수의 값의 랜덤 값으로 정하고 인풋 값의 절반의 제곱으로 나누는 것
+6. drop out이란?
+- 학습에서 랜덤하게 몇개의 뉴론을 줄이는 것
+- overfitting을 방지하기 위함
+- 주의) 학습할 때는 dropout하지만, 실제 train할 때는 모두 참여해야한다.
+7. Ensemble이란?
+- 똑같은 형태의 deep learning을 여러개 만들고 결과를 combine해서 확인하는 것
+  - 예) 같은 분야의 전문가를 모아서 평가하는 것
+
+## Lec 11
+1. CNN- convolutional neural network
+- 주어진 image의 전체를 보는 것이 아닌 일부분을 보는 것
+  - 여기서 일부분은 filter
+  - ![참고](https://medium.com/@hobinjeong/cnn-convolutional-neural-network-9f600dd3b395)
+2. stride란
+- filter를 몇칸씩 움직이는지 정하는 단위
+3. CNN 결과의 output 크기 공식
+- (N-F)/stride + 1
+  - N은 이미지의 가로세로 크기
+  - F는 이미지의 가로세로 크기
+4. pad를 사용하는 이유?
+- input의 사이즈와 output의 사이즈가 갖게 나오게 하기 위함
+- 보통 filter를 통해 convolution을 거치면 이미지의 데이터 손실이 생김. pad를 통해 손실을 없앤다
+5. pooling이란
+- convolutional layer의 일부를 체취하여(sampling) 새로운 레이어를 만드는 것
+6. pooling을 하는 이유?
+- feature의 수를 줄이고 overfitting을 방지하기 위함?
