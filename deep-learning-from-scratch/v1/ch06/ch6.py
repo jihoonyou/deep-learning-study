@@ -38,4 +38,9 @@ class AdaGrad:
                 self.h[key] = np.zeros_like(val)
         for key in params.keys():
             self.h[key] += grads[key] * grads[key]
+<<<<<<< HEAD
             params[key] -= self.lr*grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+=======
+            params[key] -= self.lr*grads[key] / (np.sqrt(self.h[key]) + 1e-7)
+
+>>>>>>> c359ac2e7bc308646f7c25f329a09e541d701555
