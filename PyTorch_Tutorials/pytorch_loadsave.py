@@ -44,6 +44,11 @@ def save_checkpoint(state, filename='my_checkpoint.pth.tar'):
 def load_checkpoint(checkpoint):
     print('=> Loading checkpoint')
     model.load_state_dict(checkpoint['state_dict'])
+    optimizer.load_state_dict(checkpoint['optimizer'])
+
+if load_model:
+    load_model(torch.load('my_checkpoint.pth.tar'))
+
 # Set device
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -53,6 +58,7 @@ num_classes = 10
 learning_rate = 0.001
 batch_size = 64 # 한번에 학습시킬 data들 묶음
 num_epochs = 5
+load_model = True
 
 # Load Data
 train_dataset = datasets.MNIST(root='dataset/', train = True, transform=transforms.ToTensor(), download=True) # download data
@@ -71,7 +77,7 @@ optimizer = optim.Adam(model.parameters(), lr=learning_rate) # 모델의 paramet
 # Train Netowrk
 for epoch in range(num_epochs):
     
-    if epoch == 2:
+    if epoch % 3 == 0:
         checkpoint = { 'state_dict': model.state_dict(), 'optimzer': optimzer.state_dict()}
         save_checkpoint(checkpoint)
     for batch, (data, targets) in enumerate(train_loader): # data is images, targets are correct digits for each image
